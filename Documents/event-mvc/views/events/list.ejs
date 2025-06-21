@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>All Events</title>
-  <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-  <h1>Event List</h1>
-  <p><a href="/events/new">+ Add New Event</a></p>
-  <table border="1" cellpadding="5">
+<%- include('../partials/header', { title: 'All Events' }) %>
+
+<h1 class="mb-3">Event List</h1>
+<a href="/events/new" class="btn btn-success mb-3">+ Add New Event</a>
+
+<table class="table table-striped">
+  <thead class="table-dark">
     <tr>
       <th>Title</th><th>Date</th><th>Time</th><th>Location</th><th>Actions</th>
     </tr>
+  </thead>
+  <tbody>
     <% events.forEach(event => { %>
     <tr>
       <td><%= event.title %></td>
@@ -19,13 +17,14 @@
       <td><%= event.time %></td>
       <td><%= event.location %></td>
       <td>
-        <a href="/events/<%= event.id %>/edit">Edit</a>
-        <form action="/events/<%= event.id %>/delete" method="POST" style="display:inline">
-          <button type="submit">Delete</button>
+        <a href="/events/<%= event.id %>/edit" class="btn btn-primary btn-sm">Edit</a>
+        <form action="/events/<%= event.id %>/delete" method="POST" class="d-inline">
+          <button class="btn btn-danger btn-sm">Delete</button>
         </form>
       </td>
     </tr>
     <% }) %>
-  </table>
-</body>
-</html>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>
