@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>All Events</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <h1>Event List</h1>
+  <p><a href="/events/new">+ Add New Event</a></p>
+  <table border="1" cellpadding="5">
+    <tr>
+      <th>Title</th><th>Date</th><th>Time</th><th>Location</th><th>Actions</th>
+    </tr>
+    <% events.forEach(event => { %>
+    <tr>
+      <td><%= event.title %></td>
+      <td><%= event.date %></td>
+      <td><%= event.time %></td>
+      <td><%= event.location %></td>
+      <td>
+        <a href="/events/<%= event.id %>/edit">Edit</a>
+        <form action="/events/<%= event.id %>/delete" method="POST" style="display:inline">
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+  </table>
+</body>
+</html>
